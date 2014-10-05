@@ -1,5 +1,5 @@
 ---
-:orm: none
+:orm: activerecord
 :test: rspec
 :mock: none
 :script: none
@@ -7,3 +7,4 @@
 :stylesheet: none
 :namespace: MailPredictor
 :migration_format: number
+
