@@ -15,7 +15,7 @@ RSpec.describe Email do
 
   it '#count_for_domain' do
     2.times { FactoryGirl.create(:email) }
-    FactoryGirl.create(:email ,domain_name: 'google.com')
+    FactoryGirl.create(:email, domain_name: 'google.com')
     expect(Email.count_for_domain 'google.com').to eq 1
     expect(Email.count_for_domain 'alphasights.com').to eq 2
   end
