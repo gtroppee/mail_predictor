@@ -1,9 +1,9 @@
 class Email < ActiveRecord::Base
  
   KNOWN_FORMATS = [
-    Format.new(:first_name_dot_last_name, /\A[a-z]{2,}\.[a-z]{2,}@[a-z]+\.[a-z]+\z/),
-    Format.new(:first_name_dot_last_initial, /\A[a-z]{2,}\.[a-z]{1}@[a-z]+\.[a-z]+\z/),
-    Format.new(:first_initial_dot_last_name, /\A[a-z]{1}\.[a-z]{2,}@[a-z]+\.[a-z]+\z/),
+    Format.new(:first_name_dot_last_name,       /\A[a-z]{2,}\.[a-z]{2,}@[a-z]+\.[a-z]+\z/),
+    Format.new(:first_name_dot_last_initial,    /\A[a-z]{2,}\.[a-z]{1}@[a-z]+\.[a-z]+\z/),
+    Format.new(:first_initial_dot_last_name,    /\A[a-z]{1}\.[a-z]{2,}@[a-z]+\.[a-z]+\z/),
     Format.new(:first_initial_dot_last_initial, /\A[a-z]{1}\.[a-z]{1}@[a-z]+\.[a-z]+\z/)
   ]
 
@@ -14,6 +14,10 @@ class Email < ActiveRecord::Base
   def format
     KNOWN_FORMATS.each { |format| return format.name if format.pattern.match(self.to_s) }
   end
+  
+  def self.find_by_domain_name(domain_name)
+    where(domain_name: domain_name)
+  end
 
   def self.create_from_string(email_string)
     domain_name = email_string.partition('@').last
@@ -22,9 +26,9 @@ class Email < ActiveRecord::Base
     last_name   = names.split('.').last.humanize
 
     Email.create(
-      first_name: first_name,
-      last_name: last_name,
-      domain_name: domain_name
+      first_name:   first_name,
+      last_name:    last_name,
+      domain_name:  domain_name
     )
   end
 
