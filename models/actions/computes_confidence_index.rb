@@ -1,8 +1,9 @@
 class ComputesConfidenceIndex
   
-  def self.compute(email, domain_name)
-    (get_emails_with_the_same_format(email, domain_name).size /
-     get_emails_for_domain(domain_name).size) * 100  
+  def self.compute(format, domain_name)
+   index = (get_emails_for_format(format, domain_name).size.to_f /
+     get_emails_for_domain(domain_name).size) * 100
+   index.round  
   end
 
   private
@@ -10,9 +11,9 @@ class ComputesConfidenceIndex
       Email.find_by_domain_name(domain_name)
     end
 
-    def self.get_emails_with_the_same_format(email, domain_name)
-      get_emails_for_domain(domain_name).select { |e|
-        e.format === email.format
+    def self.get_emails_for_format(format, domain_name)
+      get_emails_for_domain(domain_name).select { |email|
+        email.format === format
       }  
     end
 end
