@@ -5,6 +5,7 @@ gem 'rake'
 
 # Component requirements
 gem 'slim'
+gem 'pry-padrino', group: :development
 
 # DB requirements
 gem 'pg', :group => 'production'
