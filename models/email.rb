@@ -17,8 +17,12 @@ class Email < ActiveRecord::Base
     )
   end
 
+  def self.find_by_domain(domain_name)
+    where(domain_name: domain_name)
+  end
+
   def self.count_for_domain(domain_name)
-    where(domain_name: domain_name).count
+    self.find_by_domain(domain_name).count
   end
 
 end
