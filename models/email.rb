@@ -1,22 +1,10 @@
 class Email < ActiveRecord::Base
  
   KNOWN_FORMATS = [
-    {
-      name: :first_name_dot_last_name,
-      pattern: /\A[a-z]{2,}\.[a-z]{2,}@[a-z]+\.[a-z]+\z/
-    },
-    {
-      name: :first_name_dot_last_initial,
-      pattern: /\A[a-z]{2,}\.[a-z]{1}@[a-z]+\.[a-z]+\z/
-    },
-    {
-      name: :first_initial_dot_last_name,
-      pattern: /\A[a-z]{1}\.[a-z]{2,}@[a-z]+\.[a-z]+\z/
-    },
-    {
-      name: :first_initial_dot_last_initial,
-      pattern: /\A[a-z]{1}\.[a-z]{1}@[a-z]+\.[a-z]+\z/
-    }
+    Format.new(:first_name_dot_last_name, /\A[a-z]{2,}\.[a-z]{2,}@[a-z]+\.[a-z]+\z/),
+    Format.new(:first_name_dot_last_initial, /\A[a-z]{2,}\.[a-z]{1}@[a-z]+\.[a-z]+\z/),
+    Format.new(:first_initial_dot_last_name, /\A[a-z]{1}\.[a-z]{2,}@[a-z]+\.[a-z]+\z/),
+    Format.new(:first_initial_dot_last_initial, /\A[a-z]{1}\.[a-z]{1}@[a-z]+\.[a-z]+\z/)
   ]
 
   def to_s
@@ -24,7 +12,7 @@ class Email < ActiveRecord::Base
   end
 
   def format
-    KNOWN_FORMATS.each { |format| return format[:name] if format[:pattern].match(self.to_s) }
+    KNOWN_FORMATS.each { |format| return format.name if format.pattern.match(self.to_s) }
   end
 
   def self.create_from_string(email_string)
