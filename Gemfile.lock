@@ -16,7 +16,10 @@ GEM
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
     builder (3.2.2)
+    database_cleaner (1.0.1)
     diff-lcs (1.2.5)
+    factory_girl (4.3.0)
+      activesupport (>= 3.0.0)
     http_router (0.11.1)
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
@@ -107,6 +110,8 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (>= 3.1)
+  database_cleaner
+  factory_girl
   padrino (= 0.12.3)
   pg
   rack-test
