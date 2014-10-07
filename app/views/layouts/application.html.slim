@@ -23,6 +23,20 @@ html
             ul#predictions
               == partial 'predictions/prediction', collection: @predictions
 
+      - elsif @invalid_email
+        div.alert.alert-danger
+          'The information you just entered are not valid. Please respect the following form 
+          ul
+            li 
+              b First name : 
+              'Jonh
+            li 
+              b First name : 
+              'Ferguson
+            li 
+              b Domain name : 
+              'alphasights.com
+
       == yield
 
     div id="footer"

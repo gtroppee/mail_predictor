@@ -22,6 +22,17 @@ describe "Submitting new prediction request" do
     end
   end
 
+  describe 'when entering information that do not respect the expected format' do
+    it 'should return an error message with no suggestion' do
+      fill_in 'email_first_name',  with: 'John'
+      fill_in 'email_last_name',   with: 'Fer.guson'
+      fill_in 'email_domain_name', with: 'alphasights.com'
+      click_on 'Submit'
+      expect(page).to have_css '.alert-danger'
+      expect(page).not_to have_css 'li.prediction' 
+    end  
+  end
+
   describe 'when entering invalid information' do
     it 'should return a warning message with unconfident suggestions' do
       fill_in 'email_first_name',  with: 'Barack'

@@ -1,4 +1,8 @@
 class Email < ActiveRecord::Base
+
+  validates :first_name,  presence: true, format: { with: /\A[a-z]+\z/i }
+  validates :last_name,   presence: true, format: { with: /\A[a-z]+\z/i }
+  validates :domain_name, presence: true, format: { with: /\A[a-z]+\.[a-z]+\z/i }
  
   KNOWN_FORMATS = [
     Format.new(:first_name_dot_last_name,       /\A[a-z]{2,}\.[a-z]{2,}@[a-z]+\.[a-z]+\z/),
@@ -6,13 +10,6 @@ class Email < ActiveRecord::Base
     Format.new(:first_initial_dot_last_name,    /\A[a-z]{1}\.[a-z]{2,}@[a-z]+\.[a-z]+\z/),
     Format.new(:first_initial_dot_last_initial, /\A[a-z]{1}\.[a-z]{1}@[a-z]+\.[a-z]+\z/)
   ]
-
-  # def initialize(attributes = {})
-  #   super
-  #   known_domains = Email.pluck(:domain_name)
-  #   raise ArgumentError, 
-  #     "This domain hasn't been found in our database, therefore we cannot predict an email format for it." unless known_domains.include?(domain_name)    
-  # end
 
   def to_s
     "#{first_name.downcase}.#{last_name.downcase}@#{domain_name}"
@@ -27,11 +24,11 @@ class Email < ActiveRecord::Base
   end
 
   def self.known_domains
-    pluck(:domain_name)
+    pluck(:domain_name).uniq
   end
 
   def self.create_from_string(email_string)
-    domain_name = email_string.partition('@').last
+    domain_name = email_string.partition('@').last.downcase
     names       = email_string.partition('@').first
     first_name  = names.split('.').first.humanize
     last_name   = names.split('.').last.humanize
