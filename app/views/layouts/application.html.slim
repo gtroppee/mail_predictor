@@ -9,8 +9,8 @@ html
     h1.jumbotron.text-center The Mail Predictor
 
     #content
-      - if @status
-        == partial "statuses/#{@status}"
+      - if @predictor
+        == partial "statuses/#{@predictor.status}", locals: { predictions: @predictor.predictions, matching_email: @predictor.email }
 
       == yield
 

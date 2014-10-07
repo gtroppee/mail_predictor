@@ -1,4 +1,4 @@
 div.alert.alert-warning
   'The domain you just entered doesn't match any address we have in our database, we therefore cannot make relevant predictions. Nonetheless, here are all the possible addresses based on all the formats we have:
   ul#predictions
-    == partial 'predictions/prediction', collection: @predictions
+    == partial 'predictions/prediction', collection: predictions

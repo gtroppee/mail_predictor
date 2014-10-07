@@ -20,6 +20,14 @@ class Email < ActiveRecord::Base
   def format
     KNOWN_FORMATS.each { |format| return format.name if format.pattern.match(self.to_s) }
   end
+
+  def already_exists?
+    already_existing_email.any?
+  end
+
+  def already_existing_email
+    Email.select{ |e| e.to_s === to_s }
+  end
   
   def self.find_by_domain_name(domain_name)
     where(domain_name: domain_name)
