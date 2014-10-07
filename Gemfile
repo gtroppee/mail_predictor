@@ -15,6 +15,9 @@ gem 'sqlite3'
 # Test requirements
 group :test do
   gem 'rspec'
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'launchy'
   gem 'factory_girl'
   gem 'rack-test', :require => 'rack/test'
   gem 'database_cleaner'

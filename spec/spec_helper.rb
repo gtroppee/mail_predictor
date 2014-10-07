@@ -34,5 +34,17 @@ def app(app = nil, &blk)
   @app ||= Padrino.application
 end
 
+# Capybara Setup
+require 'capybara/rspec'
+require 'capybara/poltergeist'
+include Capybara::DSL
+Capybara.app = @app
+Capybara.configure do |conf|
+  conf.javascript_driver = :poltergeist
+  conf.default_driver = :poltergeist
+  conf.app_host = 'http://localhost:3000'
+end
+
+# Custom Setup
 require 'utilities'
 

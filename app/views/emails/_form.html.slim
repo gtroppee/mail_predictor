@@ -1,0 +1,12 @@
+= form_for Email.new, 'predictions', id: 'email_form', class: 'form-inline well', method: :post do |f|
+  div.row
+    div.form-group.col-sm-2
+      = f.text_field :first_name, class: 'form-control', placeholder: 'First name', required: true
+    div.form-group.col-sm-2
+      = f.text_field :last_name, class: 'form-control', placeholder: 'Last name', required: true
+    div.form-group.col-sm-2
+      div.input-group
+        div.input-group-addon @
+        = f.text_field :domain_name, class: 'form-control', placeholder: 'Domain name', required: true, style: 'width: 140px;'
+    div.actions.form-group.col-sm-2
+      = f.submit 'Submit', class: 'btn btn-primary'

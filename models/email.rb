@@ -26,6 +26,10 @@ class Email < ActiveRecord::Base
     where(domain_name: domain_name)
   end
 
+  def self.known_domains
+    pluck(:domain_name)
+  end
+
   def self.create_from_string(email_string)
     domain_name = email_string.partition('@').last
     names       = email_string.partition('@').first

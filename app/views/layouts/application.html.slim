@@ -6,13 +6,23 @@ html
     meta name="keywords" content="template language"
 
   body.container
-    h1.jumbotron.text-center The Mail Predictor !
+    h1.jumbotron.text-center The Mail Predictor
 
     #content
-      p This example shows you how a basic Slim file looks like.
-      a.btn.btn-primary href="/b" B link
+      - if @predictions.try(:any?)
+
+        - if @predictions.map(&:confidence_index).reduce(:+).zero?
+          div.alert.alert-warning
+            'The domain you just entered doesn't match any address we have in our database, we therefore cannot make relevant predictions. Nonetheless, here are all the possible addresses based on all the formats we have:
+            ul#predictions
+              == partial 'predictions/prediction', collection: @predictions
+
+        - else
+          div.alert.alert-success
+            'Based on the addresses we have in our database, the suggested email addresses for the entered info are the following:
+            ul#predictions
+              == partial 'predictions/prediction', collection: @predictions
 
       == yield
 
     div id="footer"
-      | Copyright
