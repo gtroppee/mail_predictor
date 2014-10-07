@@ -7,6 +7,6 @@ class PredictsEmail
       formatted_email  = AppliesEmailFormats.apply(format, email)
       confidence_index = ComputesConfidenceIndex.compute(format, domain_name)
       Prediction.new(formatted_email, confidence_index)
-    }.sort_by(&:confidence_index)
+    }.sort_by(&:confidence_index).reverse
   end
 end
