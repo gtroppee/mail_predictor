@@ -39,6 +39,7 @@ require 'capybara/rspec'
 require 'capybara/poltergeist'
 include Capybara::DSL
 Capybara.app = @app
+Capybara.save_and_open_page_path = "#{Padrino.root}/tmp/capybara_snapshots"
 Capybara.configure do |conf|
   conf.javascript_driver = :poltergeist
   conf.default_driver = :poltergeist
