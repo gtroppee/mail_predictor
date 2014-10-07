@@ -7,12 +7,12 @@ class Email < ActiveRecord::Base
     Format.new(:first_initial_dot_last_initial, /\A[a-z]{1}\.[a-z]{1}@[a-z]+\.[a-z]+\z/)
   ]
 
-  def initialize(attributes = {})
-    super
-    known_domains = Email.pluck(:domain_name)
-    raise ArgumentError, 
-      "This domain hasn't been found in our database, therefore we cannot predict an email format for it." unless known_domains.include?(domain_name)    
-  end
+  # def initialize(attributes = {})
+  #   super
+  #   known_domains = Email.pluck(:domain_name)
+  #   raise ArgumentError, 
+  #     "This domain hasn't been found in our database, therefore we cannot predict an email format for it." unless known_domains.include?(domain_name)    
+  # end
 
   def to_s
     "#{first_name.downcase}.#{last_name.downcase}@#{domain_name}"

@@ -10,8 +10,10 @@ FactoryGirl.definition_file_paths = [
 ]
 FactoryGirl.find_definitions
 
+# Rspec setup
 RSpec.configure do |conf|
   conf.include Rack::Test::Methods
+  conf.include FactoryGirl::Syntax::Methods
 
   conf.before(:suite) do
     DatabaseCleaner.strategy = :transaction
@@ -27,16 +29,10 @@ RSpec.configure do |conf|
   end
 end
 
-# You can use this method to custom specify a Rack app
-# you want rack-test to invoke:
-#
-#   app MailPredictor::App
-#   app MailPredictor::App.tap { |a| }
-#   app(MailPredictor::App) do
-#     set :foo, :bar
-#   end
-#
 def app(app = nil, &blk)
   @app ||= block_given? ? app.instance_eval(&blk) : app
   @app ||= Padrino.application
 end
+
+require 'utilities'
+
