@@ -2,13 +2,7 @@ MailPredictor::App.controllers :predictions do
   
   post :create, map: '/predictions' do
     email = Email.new(params[:email])
-
-    if email.valid?
-      @predictions = PredictsEmail.predicts(email) 
-    else
-      @invalid_email = true
-    end
-    
+    @status = define_response_status(email)
     render 'predictions/new'
   end
 

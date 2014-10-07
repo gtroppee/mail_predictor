@@ -1,3 +1,7 @@
+JSON.parse(File.read('data/emails.json')).each do |_, val|
+  Email.create_from_string(val)
+end
+
 # Seed add you the ability to populate your db.
 # We provide you a basic shell for interaction with the end user.
 # So try some code like below:

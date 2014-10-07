@@ -1,7 +1,7 @@
 class Email < ActiveRecord::Base
 
-  validates :first_name,  presence: true, format: { with: /\A[a-z]+\z/i }
-  validates :last_name,   presence: true, format: { with: /\A[a-z]+\z/i }
+  validates :first_name,  presence: true, uniqueness: true, format: { with: /\A[a-z]+\z/i }
+  validates :last_name,   presence: true, uniqueness: true, format: { with: /\A[a-z]+\z/i }
   validates :domain_name, presence: true, format: { with: /\A[a-z]+\.[a-z]+\z/i }
  
   KNOWN_FORMATS = [

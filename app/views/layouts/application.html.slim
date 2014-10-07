@@ -9,33 +9,8 @@ html
     h1.jumbotron.text-center The Mail Predictor
 
     #content
-      - if @predictions.try(:any?)
-
-        - if @predictions.map(&:confidence_index).reduce(:+).zero?
-          div.alert.alert-warning
-            'The domain you just entered doesn't match any address we have in our database, we therefore cannot make relevant predictions. Nonetheless, here are all the possible addresses based on all the formats we have:
-            ul#predictions
-              == partial 'predictions/prediction', collection: @predictions
-
-        - else
-          div.alert.alert-success
-            'Based on the addresses we have in our database, the suggested email addresses for the entered info are the following:
-            ul#predictions
-              == partial 'predictions/prediction', collection: @predictions
-
-      - elsif @invalid_email
-        div.alert.alert-danger
-          'The information you just entered are not valid. Please respect the following form 
-          ul
-            li 
-              b First name : 
-              'Jonh
-            li 
-              b First name : 
-              'Ferguson
-            li 
-              b Domain name : 
-              'alphasights.com
+      - if @status
+        == partial "statuses/#{@status}"
 
       == yield
 
