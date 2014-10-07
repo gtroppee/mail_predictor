@@ -1,8 +1,10 @@
 class Email < ActiveRecord::Base
 
-  validates :first_name,  presence: true, uniqueness: true, format: { with: /\A[a-z]+\z/i }
-  validates :last_name,   presence: true, uniqueness: true, format: { with: /\A[a-z]+\z/i }
+  validates :first_name,  presence: true, format: { with: /\A[a-z]+\z/i }
+  validates :last_name,   presence: true, format: { with: /\A[a-z]+\z/i }
   validates :domain_name, presence: true, format: { with: /\A[a-z]+\.[a-z]+\z/i }
+
+  validate :unicity_constraint
  
   KNOWN_FORMATS = [
     Format.new(:first_name_dot_last_name,       /\A[a-z]{2,}\.[a-z]{2,}@[a-z]+\.[a-z]+\z/),
@@ -39,5 +41,12 @@ class Email < ActiveRecord::Base
       domain_name:  domain_name
     )
   end
+
+  protected
+    def unicity_constraint
+      if Email.any? do |e| e.to_s === self.to_s end
+        errors.add(:base, "Two addresses cannot be indentical")
+      end
+    end
 
 end

@@ -6,7 +6,10 @@ gem 'rake'
 # Component requirements
 gem 'bcrypt'
 gem 'slim'
-gem 'pry-padrino', group: :development
+
+group :development, :test do
+  gem 'pry-padrino'
+end
 
 # DB requirements
 gem 'pg', :group => 'production'
