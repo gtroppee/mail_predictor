@@ -14,6 +14,7 @@ class Predictor
   end
 
   def predictions
+    return [] unless @email.valid?
     domain_name = @email.domain_name
 
     RetrievesEmailFormats.retrieve(domain_name).map { |format|

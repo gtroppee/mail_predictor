@@ -14,6 +14,6 @@ class RetrievesEmailFormats
     end
 
     def self.return_all_possible_formats
-      Email.all.map { |email| email.format }.uniq
+      Email.known_formats
     end
 end

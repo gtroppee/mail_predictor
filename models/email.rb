@@ -22,11 +22,7 @@ class Email < ActiveRecord::Base
   end
 
   def already_exists?
-    already_existing_email.any?
-  end
-
-  def already_existing_email
-    Email.select{ |e| e.to_s === to_s }
+    Email.any?{ |e| e.to_s === to_s }
   end
   
   def self.find_by_domain_name(domain_name)
@@ -35,6 +31,10 @@ class Email < ActiveRecord::Base
 
   def self.known_domains
     pluck(:domain_name).uniq
+  end
+  
+  def self.known_formats
+    KNOWN_FORMATS.map(&:name)  
   end
 
   def self.create_from_string(email_string)
@@ -52,9 +52,7 @@ class Email < ActiveRecord::Base
 
   protected
     def unicity_constraint
-      if Email.any? do |e| e.to_s === self.to_s end
-        errors.add(:base, "Two addresses cannot be indentical")
-      end
+      errors.add(:base, "Two addresses cannot be indentical") if already_exists?
     end
 
 end
