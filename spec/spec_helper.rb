@@ -14,6 +14,7 @@ FactoryGirl.find_definitions
 RSpec.configure do |conf|
   conf.include Rack::Test::Methods
   conf.include FactoryGirl::Syntax::Methods
+  conf.include Capybara::DSL
 
   conf.fail_fast = true
 
@@ -39,7 +40,6 @@ end
 # Capybara Setup
 require 'capybara/rspec'
 require 'capybara/poltergeist'
-include Capybara::DSL
 Capybara.app = @app
 Capybara.save_and_open_page_path = "#{Padrino.root}/tmp/capybara_snapshots"
 Capybara.configure do |conf|
