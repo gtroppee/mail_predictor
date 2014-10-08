@@ -1,7 +1,10 @@
 source 'https://rubygems.org'
 
+ruby '2.0.0'
+
 # Project requirements
 gem 'rake'
+gem 'rails_12factor'
 
 # Component requirements
 gem 'bcrypt'
