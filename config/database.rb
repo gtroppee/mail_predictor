@@ -21,7 +21,7 @@ ActiveRecord::Base.configurations[:development] = {
 
 ActiveRecord::Base.configurations[:production] = {
   :adapter => 'postgresql',
-  :database => 'mail_predictor_production',
+  :database => ENV["DATABASE_URL"],
   :encoding  => 'unicode'
 }
 
