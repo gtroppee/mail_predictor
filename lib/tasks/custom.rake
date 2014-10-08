@@ -1,10 +1,11 @@
-desc "Launch all DB commands"
-task  custom_setup: :environment do
-  %x(
-    padrino rake ar:drop:all &&
-    padrino rake ar:create:all &&
-    padrino rake ar:migrate &&
-    padrino rake seed &&
-    rake ar:migrate RACK_ENV=test
-    )
+desc "initialize/reset the projet"
+namespace :mp do
+  task  setup: :environment do
+    %w(
+      ar:drop:all
+      ar:create:all
+      ar:migrate
+      seed
+      ).each do |task| Rake.application[task].invoke end
+  end
 end
