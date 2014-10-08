@@ -9,12 +9,12 @@ gem 'slim'
 
 group :development, :test do
   gem 'pry-padrino'
+  gem 'sqlite3'
 end
 
 # DB requirements
 gem 'pg', :group => 'production'
 gem 'activerecord', '>= 3.1', :require => 'active_record'
-gem 'sqlite3'
 
 # Test requirements
 group :test do
