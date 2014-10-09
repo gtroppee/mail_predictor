@@ -95,6 +95,9 @@ As you'll see from the commit history, the majority of the tests have been coded
     * **Actions** are more functional that object and basically consist of a class that performs only one action (even though its private api can be extensive) but still make sense as a class and not just a helper method. Plus they allow for a better code encapsulation, testing and readability.
     * **Stores** are classes which the existence make sense but that do basically nothing but storing data. In this app I mostly used structs rather than empty classes because they're easy to setup and clear. And if they were to evolve in the future and become real classes, the change would be transparent for the rest of the code.
 
+* Self documenting code
+In this project, you'll see precious little comments for I tend to write code that would be the most explicit possible as to what it is supposed to do. However you'll see plenty of class, methods or variable names that are quite long, but that's a trade-off I'm willing to make to gain in readability.
+
 * Why so GUI ?
 'Cause it's pretty, shouldn't it suffice :) ? More seriously, it's always nice to develop a tool that can be used by almost everyone, not just a developer in the console. And while I was at it, I figured I might just as well make it fully functional, which it is !
 
