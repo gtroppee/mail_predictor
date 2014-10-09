@@ -13,7 +13,7 @@ rake mp:setup
 
 During the setup task, you will be prompted to choose your admin credentials for the padrino-admin interface.
 
-**Actions:** I didn't add the .ruby-version and .ruby-gemset files to the .gitignore, so make sure you delete them if they bother you.
+**Note:** I didn't check out the .ruby-version and .ruby-gemset files, so make sure you delete them if they bother you.
 
 
 ## Launching the app
@@ -23,12 +23,12 @@ padrino start
 ```
 And then go to http://localhost:3000
 
+Alternatively, you can go check it out on [Heroku](http://mail-predictor-troppee.herokuapp.com/). The access credentials for the admin dashboard will only be forwarded to the Alphasights team, though.
+
 ## Running specs
 
-Before running the specs, make sure that webrick is active on http://localhost:3000
 
 ```ruby
-rake mp:test_prepare
 rspec spec
 ```
 
@@ -62,7 +62,7 @@ predictor.predictions
 
 ## 4 possible scenarios
 
-* The domain name and the identity are known.
+* The domain name and the identity (First name + last name) are known.
 => No predictions are made but the matching email address is returned.
 
 * The domain name is known (i.e. there's at least one existing email with this domain in the database) but the identity of the person is unknown.
@@ -94,7 +94,7 @@ As you'll see from the commit history, the majority of the tests have been coded
     * **Stores** are classes which the existence make sense but that do basically nothing but storing data. In this app I mostly used structs rather than empty classes because they're easy to setup and clear. And if they were to evolve in the future and become real classes, the change would be transparent for the rest of the code.
 
 * Why so GUI ?
-'Cause it's pretty, shouldn't it suffice ? More seriously, it's always nice to develop a tool that can be used by almost everyone, not just a developer in the console. And while I was at it, I figured I might just as well make it functional, which it is !
+'Cause it's pretty, shouldn't it suffice :) ? More seriously, it's always nice to develop a tool that can be used by almost everyone, not just a developer in the console. And while I was at it, I figured I might just as well make it fully functional, which it is !
 
 
 ## TL;DR
