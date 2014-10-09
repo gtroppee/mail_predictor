@@ -29,6 +29,8 @@ Alternatively, you can go check it out on [Heroku](http://mail-predictor-troppee
 
 
 ```ruby
+RACK_ENV=test rake ar:migrate
+padrino start # or restart if already active
 rspec spec
 ```
 

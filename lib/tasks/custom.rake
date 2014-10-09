@@ -2,14 +2,9 @@ namespace :mp do
 
   desc "initialize/reset the projet"
   task  setup: :environment do
-    Rake.application['ar:setup'].invoke
-    Rake.application['mp:test_prepare'].invoke
-  end
-
-  task  test_prepare: :environment do
-    %w(drop create migrate).each do |action|
-      ENV['RACK_ENV'] = 'test'
-      Rake.application["ar:#{action}"].invoke
-    end
+    Rake.application['ar:drop:all'].invoke
+    Rake.application['ar:create:all'].invoke
+    Rake.application['ar:migrate'].invoke
+    Rake.application['db:seed'].invoke
   end
 end
