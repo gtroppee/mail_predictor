@@ -1,7 +1,6 @@
 desc "initialize/reset the projet"
 namespace :mp do
   task  setup: :environment do
-    RACK_ENV = 'development' 
     Rake.application['ar:setup'].invoke
     Rake.application['db:seed'].invoke
   end
