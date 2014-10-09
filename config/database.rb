@@ -19,10 +19,21 @@ ActiveRecord::Base.configurations[:development] = {
   :encoding  => 'unicode'
 }
 
+# Very ugly but do not want to hardcode the Heroku info
+database = ENV["DATABASE_URL"].split('/').last
+username = ENV["DATABASE_URL"].split('/')[2].split(':').first
+password = ENV["DATABASE_URL"].split('/')[2].split(':')[1].split('@').first
+host     = ENV["DATABASE_URL"].split('/')[2].split(':')[1].split('@')[1]
+port     = ENV["DATABASE_URL"].split('/')[2].split(':').last
+
 ActiveRecord::Base.configurations[:production] = {
   :adapter => 'postgresql',
-  :database => ENV["DATABASE_URL"],
-  :encoding  => 'unicode'
+  :database => database,
+  :password => password,
+  :encoding  => 'unicode',
+  :host => host,
+  :username => username,
+  :port => port
 }
 
 ActiveRecord::Base.configurations[:test] = {
