@@ -38,10 +38,10 @@ rspec spec
 
 There are two ways of using this app:
 
-* Via the user interface
+* **Via the user interface**
 Quite straightforward, the user only has to fill in the form and submit it. Also, admins can go to the dashboard to play with the registered emails, and see the confidence index evolve according to the modifications made upon the database for instance.
 
-* Via the console
+* **Via the console**
 ```ruby
 padrino console
 
@@ -83,22 +83,22 @@ predictor.predictions
 
 More observations (yay!), this time more about the structure and the main decisions that have been made throughout this challenge.
 
-* About blocks
+* **About blocks**
 I mainly use the Jim Weirich's convention for blocks, meaning that `{}` are used when I care about the return value of the block, and `do ... end` are used when I just want to execute instructions.
 
-* REPL vs TDD
+* **REPL vs TDD**
 As you'll see from the commit history, the majority of the tests have been coded after the global structure was sorted out. Two reasons for this:
  * I really wasn't sure how I was going to craft the app from the start
  * The REPL flow is just more natural to me : define > test > refine
 
-* Action and Store models
+* **Action and Store models**
     * **Actions** are more functional that object and basically consist of a class that performs only one action (even though its private api can be extensive) but still make sense as a class and not just a helper method. Plus they allow for a better code encapsulation, testing and readability.
     * **Stores** are classes which the existence make sense but that do basically nothing but storing data. In this app I mostly used structs rather than empty classes because they're easy to setup and clear. And if they were to evolve in the future and become real classes, the change would be transparent for the rest of the code.
 
-* Self documenting code
+* **Self documenting code**
 In this project, you'll see precious little comments for I tend to write code that would be the most explicit possible as to what it is supposed to do. However you'll see plenty of class, methods or variable names that are quite long, but that's a trade-off I'm willing to make to gain in readability.
 
-* Why so GUI ?
+* **Why so GUI ?**
 'Cause it's pretty, shouldn't it suffice :) ? More seriously, it's always nice to develop a tool that can be used by almost everyone, not just a developer in the console. And while I was at it, I figured I might just as well make it fully functional, which it is !
 
 
