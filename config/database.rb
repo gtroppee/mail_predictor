@@ -19,6 +19,8 @@ ActiveRecord::Base.configurations[:development] = {
   :encoding  => 'unicode'
 }
 
+if RACK_ENV == 'production'
+
 # Very ugly but do not want to hardcode the Heroku info
 database = ENV["DATABASE_URL"].split('/').last
 username = ENV["DATABASE_URL"].split('/')[2].split(':').first
@@ -35,6 +37,8 @@ ActiveRecord::Base.configurations[:production] = {
   :username => username,
   :port => port
 }
+
+end
 
 ActiveRecord::Base.configurations[:test] = {
   :adapter => 'sqlite3',

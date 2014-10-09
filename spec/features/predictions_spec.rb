@@ -7,10 +7,6 @@ describe "Submitting new prediction request" do
     visit '/'
   end
 
-  after do
-    Email.destroy_all
-  end
-
   it "should" do 
     expect(page).to have_css 'h1', text: 'The Mail Predictor'
   end

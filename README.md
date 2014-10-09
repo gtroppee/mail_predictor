@@ -16,19 +16,21 @@ During the setup task, you will be prompted to choose your admin credentials for
 **Actions:** I didn't add the .ruby-version and .ruby-gemset files to the .gitignore, so make sure you delete them if they bother you.
 
 
-## Running specs
-
-```ruby
-RACK_ENV=test rake ar:migrate
-rspec spec
-```
-
 ## Launching the app
 
 ```ruby
 padrino start
 ```
 And then go to http://localhost:3000
+
+## Running specs
+
+Before running the specs, make sure that webrick is active on http://localhost:3000
+
+```ruby
+rake mp:test_prepare
+rspec spec
+```
 
 ## Interacting with the app
 
@@ -39,6 +41,8 @@ Quite straightforward, the user only has to fill in the form and submit it. Also
 
 * Via the console
 ```ruby
+padrino console
+
 # Make a new instance of the Email class
 email = Email.new(
     first_name: 'John',
@@ -67,7 +71,7 @@ predictor.predictions
 * The domain name is unknown.
 => No predictions are made but suggestions are returned, i.e. all four possible email addresses.
 
-**Note: ** Suggestions are just like predictions but without the confidence index. From an architectural point of view they're only semantical variations of the same entity (one has a confidence index greater than zero, the other does not). 
+**Note:** Suggestions are just like predictions but without the confidence index. From an architectural point of view they're only semantical variations of the same entity (one has a confidence index greater than zero, the other does not). 
 
 * The information is invalid.
 => An error message is returned with an example of correctly formatted inputs.

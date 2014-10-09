@@ -23,7 +23,7 @@ gem 'activerecord', '>= 3.1', :require => 'active_record'
 group :test do
   gem 'rspec'
   gem 'capybara'
-  gem 'poltergeist'
+  gem 'capybara-webkit'
   gem 'launchy'
   gem 'factory_girl'
   gem 'rack-test', :require => 'rack/test'
