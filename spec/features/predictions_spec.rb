@@ -7,7 +7,7 @@ describe "Submitting new prediction request" do
     visit '/'
   end
 
-  it "should" do 
+  it "display the right information" do 
     expect(page).to have_css 'h1', text: 'The Mail Predictor'
   end
 
