@@ -13,9 +13,13 @@ rake mp:setup
 
 During the setup task, you will be prompted to choose your admin credentials for the padrino-admin interface.
 
+**Actions:** I didn't add the .ruby-version and .ruby-gemset files to the .gitignore, so make sure you delete them if they bother you.
+
+
 ## Running specs
 
 ```ruby
+RACK_ENV=test rake ar:migrate
 rspec spec
 ```
 
