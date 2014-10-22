@@ -30,6 +30,10 @@ RSpec.configure do |conf|
   conf.after(:each) do
     DatabaseCleaner.clean
   end
+
+  conf.after(:suite) do
+    ActiveRecord::Base.connection.close
+  end
 end
 
 def app(app = nil, &blk)
@@ -50,4 +54,10 @@ end
 
 # Custom Setup
 require 'utilities'
+
+Predictor.configure do |config|
+  config.adapter = :activerecord # existing adapters => :activerecord, :json, :csv
+end
+
+puts "Using the #{Predictor.configuration.adapter} adapter"
 

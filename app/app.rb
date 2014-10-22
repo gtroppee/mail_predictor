@@ -5,6 +5,7 @@ module MailPredictor
     enable :sessions
 
     class MailPredictor::App
+
       # for more info: http://www.seanbehan.com/how-to-fix-activerecord-connectiontimeouterror-with-sinatra
       after { ActiveRecord::Base.connection.close }
 

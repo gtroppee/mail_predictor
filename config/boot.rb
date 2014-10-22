@@ -44,3 +44,5 @@ Padrino.after_load do
 end
 
 Padrino.load!
+
+Padrino.require_dependencies "#{Padrino.root}/config/initializers/**/*.rb"

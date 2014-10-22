@@ -2,14 +2,14 @@ require 'spec_helper'
 
 RSpec.describe Predictor do
  
-  let(:registered_email) { create(:email) }
+  let(:registered_email) { build(:registered_email) }
   let(:email) { registered_email.dup } 
   let(:predictor) { Predictor.new(email) }
 
   it '.status && .predictions' do
   # I know that testing multiple methods at the same time is not pretty but, since they both need more or less the same context, this seems better (to me) than duplicating chunks of code.
     # email_is_already_in_db
-    expect(predictor.status).to eq :email_is_already_in_db
+    expect(predictor.status).to eq :email_is_already_registered
     expect(predictor.email.to_s).to eq registered_email.to_s
 
     # domain_name_is_unknown
