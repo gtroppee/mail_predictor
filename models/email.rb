@@ -46,6 +46,6 @@ class Email < ActiveRecord::Base
     end
 
     def known_formats
-      EmailManager.get_known_formats
+      FormatManager.get_known_formats
     end
 end

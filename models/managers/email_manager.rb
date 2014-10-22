@@ -12,12 +12,4 @@ class EmailManager
   def self.get_known_domain_names
     get_emails.map{|email| email.domain_name}.uniq
   end
-
-  def self.get_known_formats
-    AppliesEmailFormats::KNOWN_FORMATS
-  end
-
-  def self.get_known_format_names
-    get_known_formats.map(&:name)
-  end
 end

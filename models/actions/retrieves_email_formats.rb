@@ -14,6 +14,6 @@ class RetrievesEmailFormats
     end
 
     def self.return_all_possible_formats
-      EmailManager.get_known_format_names
+      FormatManager.get_known_format_names
     end
 end
