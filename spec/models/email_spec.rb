@@ -56,22 +56,31 @@ RSpec.describe Email do
     it 'should respect the presence validations' do
       email.first_name = ''
       expect(email).to be_invalid
-      email.attributes = { first_name: 'John', last_name: '' }
+
+      email.first_name = 'John'
+      email.last_name  = ''
       expect(email).to be_invalid
-      email.attributes = { last_name: 'Doe', domain_name: '' }
+
+      email.last_name   = 'Doe'
+      email.domain_name = ''
       expect(email).to be_invalid
-      email.attributes = { domain_name: 'alphasights.com' }
+
+      email.domain_name = 'alphasights.com'
       expect(email).to be_valid
     end
 
     it 'should respect the format validations' do
       email.first_name = 'Jo.hn'
       expect(email).to be_invalid
-      email.attributes = { first_name: 'John', last_name: 'Do.e' }
+
+      email.first_name = 'John'
+      email.last_name  = 'Do.e'
       expect(email).to be_invalid
-      email.attributes = { last_name: 'Doe' }
+
+      email.last_name  = 'Doe'
       expect(email).to be_valid
-      email.attributes = { domain_name: 'alpha.sights.com' }
+
+      email.domain_name = 'alpha.sights.com'
       expect(email).to be_invalid
     end
 

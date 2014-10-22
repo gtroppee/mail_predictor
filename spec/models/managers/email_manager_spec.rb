@@ -8,12 +8,7 @@ RSpec.describe EmailManager do
   end
 
   describe 'When testing class methods' do
-
-    it '#known_formats' do
-      known_formats = [:first_name_dot_last_name, :first_name_dot_last_initial, :first_initial_dot_last_name, :first_initial_dot_last_initial]  
-      expect(FormatManager.get_known_format_names - known_formats).to eq []
-    end
-
+    
     it '#get_known_domain_names' do
       known_domains = %w(alphasights.com apple.com google.com)
       expect(@manager.get_known_domain_names - known_domains).to eq []

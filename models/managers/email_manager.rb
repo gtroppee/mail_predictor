@@ -12,4 +12,10 @@ class EmailManager
   def self.get_known_domain_names
     get_emails.map{|email| email.domain_name}.uniq
   end
+
+  def self.get_emails_for_format(format, domain_name)
+    get_emails_for_domain_name(domain_name).select { |email|
+      email.format === format
+    }
+  end
 end

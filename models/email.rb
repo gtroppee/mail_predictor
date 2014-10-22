@@ -1,5 +1,15 @@
 class Email < ActiveRecord::Base
 
+  # If we want to get rid of AR
+  # include ActiveModel::Model
+  # attr_accessor :first_name, :last_name, :domain_name
+
+  # def initialize(attributes = {})
+  #   @first_name   = attributes[:first_name]
+  #   @last_name    = attributes[:last_name]
+  #   @domain_name  = attributes[:domain_name]
+  # end
+
   validates :first_name,  presence: true, format: { with: /\A[a-z]+\z/i }
   validates :last_name,   presence: true, format: { with: /\A[a-z]+\z/i }
   validates :domain_name, presence: true, format: { with: /\A[a-z]+\.[a-z]+\z/i }
@@ -18,13 +28,17 @@ class Email < ActiveRecord::Base
     registered_emails.any?{ |e| e.to_s === to_s }
   end
 
+  def has_known_domain?
+    registered_emails.any?{ |e| e.domain_name === domain_name }
+  end
+
   def self.new_from_string(email_string)
     domain_name = email_string.partition('@').last.downcase
     names       = email_string.partition('@').first
     first_name  = names.split('.').first.humanize
     last_name   = names.split('.').last.humanize
 
-    Email.new(
+    new(
       first_name:   first_name,
       last_name:    last_name,
       domain_name:  domain_name

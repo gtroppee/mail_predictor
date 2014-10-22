@@ -9,5 +9,6 @@ def setup_environment
     s.j@apple.com
   ).each do |email_string| Email.create_from_string(email_string) end 
   end
+  @manager = EmailManager
   @known_domains = EmailManager.get_known_domain_names
 end

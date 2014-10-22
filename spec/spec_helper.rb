@@ -54,6 +54,7 @@ end
 
 # Custom Setup
 require 'utilities'
+require 'models/adapters/adapters_shared_spec'
 
 Predictor.configure do |config|
   config.adapter = :activerecord # existing adapters => :activerecord, :json, :csv
